@@ -1,0 +1,100 @@
+/* Imports */
+@import "sassgrids/screen.scss";
+
+/* Colors */
+$darkBlue: #222d60;
+$blue: #4b68bb;
+$lightBlue: #dee9f2;
+$white:#ffffff;
+
+$headerBg: $white;
+$headerLinks: $darkBlue	;
+
+$navBg: $blue;
+$navTxt: $white;
+$navHoverBg: $darkBlue;
+
+$footerBg: $darkBlue;
+$footerTxt: $white;
+
+body {
+	font:16px/1.5 'Raleway', sans-serif;
+	margin:0;
+	padding:0;
+}
+
+.wrapper {
+	margin:0 auto;
+	width:940px;
+}
+
+h1, h2 {
+	color:#333;
+	font-weight:700;
+	margin:0 auto;
+}
+
+h1 {
+	font-size:2.5em;
+}
+
+h2 {
+	font-size:2em;
+}
+
+header {
+	background:$headerBg;
+	font-size:3em;
+	padding:.25em 0;
+
+	a {
+		background:url(../img/logo-medium.png) top left no-repeat;
+		background-size:auto 100%;
+		color:$headerLinks;
+		display:block;
+		font-weight:bold;
+		height:120px;
+		text-decoration:none;
+		text-indent: -9999px;
+	}
+
+}
+
+nav {
+	background:$navBg;
+	color:$navTxt;
+	margin-bottom:1em;
+
+	ul {
+		margin:0;
+		padding:0;
+		list-style:none;
+		overflow:hidden;
+		width:100%;
+	}
+
+	li {
+		margin:0;
+		padding:0;
+		float:left;
+
+		a {
+			color:$navTxt;
+			display:block;
+			padding:.5em;
+			transition:background .2s;
+			text-decoration: none;
+
+			&:hover {
+				background:$navHoverBg;
+			}
+		}
+	}
+}
+
+footer {
+	background:$footerBg;
+	color:$footerTxt;
+	margin-top:3em;
+	padding:1em 0;
+}
