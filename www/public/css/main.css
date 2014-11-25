@@ -81,13 +81,17 @@
 @media only all and (min-width:71.25em) { }
 
 /* Colors */
+/* Fonts */
 body {
   font: 16px/1.5 'Raleway', sans-serif;
   margin: 0;
   padding: 0; }
 
 .wrapper {
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 0 1.25em; }
+  .wrapper.wrapper--nav {
+    padding: 0; }
   @media only all and (min-width:71.25em) {
     .wrapper {
       width: 940px; } }
@@ -139,7 +143,6 @@ nav {
     width: 100%; }
   nav li {
     border-bottom: 1px solid #222d60;
-    font-style: italic;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -156,14 +159,44 @@ nav {
       color: #ffffff;
       display: block;
       padding: 0.5em;
-      -webkit-transition: background 0.2s;
-              transition: background 0.2s;
+      -webkit-transition: background 0.25s;
+              transition: background 0.25s;
       text-decoration: none; }
       nav li a:hover {
         background: #222d60; }
+
+form dl, form dd, form dt {
+  padding: 0;
+  margin: 0; }
+form dd, form dt {
+  margin: 0.25em 0; }
+form label {
+  font-weight: bold; }
+form input, form textarea {
+  background: #dee9f2;
+  border: none;
+  font-size: 0.8em;
+  padding: 0.5em; }
+form textarea {
+  width: 90%; }
+  @media only all and (min-width:46.875em) {
+    form textarea {
+      width: 40%; } }
+form #message {
+  height: 6em; }
+form #address {
+  height: 4.5em; }
+form input[type=submit] {
+  font-size: 1.2em; }
+form #preferredLanguage {
+  display: none; }
 
 footer {
   background: #222d60;
   color: #ffffff;
   margin-top: 3em;
-  padding: 1em 0; }
+  padding: 1em 0;
+  text-align: center; }
+  @media only all and (min-width:71.25em) {
+    footer {
+      text-align: left; } }

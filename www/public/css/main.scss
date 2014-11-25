@@ -18,14 +18,23 @@ $navHoverBg: $darkBlue;
 $footerBg: $darkBlue;
 $footerTxt: $white;
 
+/* Fonts */
+$fontSize: 16px;
+$lineHeight: 1.5;
+
 body {
-	font:16px/1.5 'Raleway', sans-serif;
+	font:#{$fontSize}/$lineHeight 'Raleway', sans-serif;
 	margin:0;
 	padding:0;
 }
 
 .wrapper {
 	margin:0 auto;
+	padding:0 1.25em;
+
+	&.wrapper--nav {
+		padding:0;
+	}
 
 	@include mq(large) {
 		width:940px;
@@ -93,7 +102,6 @@ nav {
 
 	li {
 		border-bottom:1px solid $navBorder;
-		font-style: italic;
 		margin:0;
 		padding:0;
 		text-align:center;
@@ -114,7 +122,7 @@ nav {
 			color:$navTxt;
 			display:block;
 			padding:.5em;
-			transition:background .2s;
+			transition:background .25s;
 			text-decoration: none;
 
 			&:hover {
@@ -124,9 +132,60 @@ nav {
 	}
 }
 
+form {
+	dl, dd, dt {
+		padding:0;
+		margin:0;
+	}
+
+	dd, dt {
+		margin:.25em 0;
+	}
+
+	label {
+		font-weight:bold;
+	}
+
+	input, textarea {
+		background:$lightBlue;
+		border:none;
+		font-size:.8em;
+		padding:.5em;
+	}
+
+	textarea {
+		width:90%;
+
+		@include mq(medium) {
+			width:40%;
+		}
+	}
+
+	#message {
+		height:#{$lineHeight*4em};
+	}
+
+	#address {
+		height:#{$lineHeight*3em};
+	}
+
+	input[type=submit] {
+		font-size:1.2em;
+	}
+
+	#preferredLanguage {
+		display:none;
+	}
+}
+
 footer {
 	background:$footerBg;
 	color:$footerTxt;
 	margin-top:3em;
 	padding:1em 0;
+	text-align:center;
+
+	@include mq(large) {
+		text-align:left;
+	}
 }

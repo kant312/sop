@@ -1,27 +1,60 @@
-{#
- # Homepage template
- # ---------------
- #
- # When this template gets loaded, it will be because someone has accessed
- # http://yoursite.com/ (without any URI). Craft checks to see if you have
- # a Single section set to be the Homepage (as you do, by default), and
- # loads the section’s Template (this file). A special ‘entry’ variable
- # will already be set for you, assigned to the Homepage entry.
- #
- # It's worth noting that even if you didn't have a Homepage Single section,
- # as long as this template remains at craft/templates/index.html, it
- # would still be the one to get loaded when accessing http://yoursite.com/,
- # albeit without an ‘entry’ variable already set for you.
- #
- # See this page for more details on how Craft routes requests:
- # http://buildwithcraft.com/docs/routing
- #}
-
 {% extends "_layout" %}
 
 {% block content %}
 	<h1>{{ entry.heading }}</h1>
 
 	{{ entry.body }}
+
+	{% macro errorList(errors) %}
+	    {% if errors %}
+	        <ul class="errors">
+	            {% for error in errors %}
+	                <li>{{ error }}</li>
+	            {% endfor %}
+	        </ul>
+	    {% endif %}
+	{% endmacro %}
+
+	{% from _self import errorList %}
+
+	<form method="post" action="" accept-charset="UTF-8">
+	    {{ getCsrfInput() }}
+	    <input type="hidden" name="action" value="contactForm/sendMessage">
+	    <input type="hidden" name="redirect" value="contact/thanks">
+	    <input type="text" id="preferredLanguage" name="preferredLanguage" value="">
+
+	    <dl>
+	    	<dt>
+	    		<label for="fromName">Name</label>
+	    	</dt>
+	    	<dd><input id="fromName" type="text" name="fromName" value="{% if message is defined %}{{ message.fromName }}{% endif %}" />
+	    		{{ message is defined and message ? errorList(message.getErrors('fromName')) }}</dd>
+
+	    	<dt><label for="company">Company</label></dt>
+	    	<dd><input id="company" type="text" name="message[Company]" value="" /></dd>
+
+	    	<dt>
+	    		<label for="fromEmail">Email</label>
+	    	</dt>
+	    	<dd><input id="fromEmail" type="text" name="fromEmail" value="{% if message is defined %}{{ message.fromEmail }}{% endif %}" />
+	    		{{ message is defined and message ? errorList(message.getErrors('fromEmail')) }}</dd>
+
+	    	<dt><label for="phone">Phone</label></dt>
+	    	<dd><input id="phone" type="text" name="message[Phone]" value="" /></dd>
+
+	    	<dt><label for="address">Address</label></dt>
+	    	<dd><textarea cols="40" id="address" name="message[Address]" value=""></textarea></dd>
+
+	    	<dt>
+	    		<label for="message">What do you need?</label>
+	    	</dt>
+	    	<dd><textarea id="message" name="message[body]">{% if message is defined %}{{ message.message }}{% endif %}</textarea>
+	    		{{ message is defined and message ? errorList(message.getErrors('message')) }}</dd>
+	    </dl>
+
+	    <p>
+	    	<input type="submit" value="Send">
+	    </p>
+	</form>
 
 {% endblock %}
