@@ -11,6 +11,7 @@ $headerBg: $white;
 $headerLinks: $darkBlue	;
 
 $navBg: $blue;
+$navBorder: $darkBlue;
 $navTxt: $white;
 $navHoverBg: $darkBlue;
 
@@ -25,7 +26,10 @@ body {
 
 .wrapper {
 	margin:0 auto;
-	width:940px;
+
+	@include mq(large) {
+		width:940px;
+	}
 }
 
 h1, h2 {
@@ -35,28 +39,42 @@ h1, h2 {
 }
 
 h1 {
-	font-size:2.5em;
+	font-size:2em;
 }
 
 h2 {
-	font-size:2em;
+	font-size:1.8em;
 }
 
 header {
 	background:$headerBg;
-	font-size:3em;
+	font-size:2em;
 	padding:.25em 0;
 
 	a {
-		background:url(../img/logo-medium.png) top left no-repeat;
-		background-size:auto 100%;
+		background:url(../img/logo-no-tagline.png) top left no-repeat;
+		background-size: auto 100%;
 		color:$headerLinks;
 		display:block;
 		font-weight:bold;
-		height:120px;
+		height:60px;
+		width:64px;
+		margin:0 auto;
 		text-decoration:none;
 		text-indent: -9999px;
 	}
+
+	@include mq(large) {
+		font-size:3em;
+
+		a {
+			background-image:url(../img/logo-medium.png);
+			height:120px;
+			width:auto;
+			margin:0;
+		}
+	}
+
 
 }
 
@@ -74,9 +92,23 @@ nav {
 	}
 
 	li {
+		border-bottom:1px solid $navBorder;
+		font-style: italic;
 		margin:0;
 		padding:0;
-		float:left;
+		text-align:center;
+		width:100%;
+
+		&:last-child {
+			border:none;
+		}
+
+		@include mq(large) {
+			border:none;
+			float:left;
+			text-align:left;
+			width:auto;
+		}
 
 		a {
 			color:$navTxt;
